@@ -1,6 +1,8 @@
 //----global variables-------
 var onGoing = false;
 var temp;
+var needBreak;
+var resume;
 var pause_min;
 var pause_sec;
 $(document).ready(function(){
@@ -11,20 +13,28 @@ $(document).ready(function(){
     var minutes = parseInt($(".work .number h1").text());
     if( $(".work .number h1").text() < 60){
       var newMinutes = minutes + 1;
-      if(newMinutes < 10) $("#display h1").text("0" + newMinutes);
-      else $("#display h1").text(newMinutes);
       $(".work .number h1").text(minutes + 1);
+      if(!onGoing){
+        if(newMinutes < 10) $("#display h1").text("0" + newMinutes);
+        else $("#display h1").text(newMinutes);
+      }
+
+
 
     }
   });
 
   $(".work .minus h1").click(function(){
     var minutes = parseInt($(".work .number h1").text());
-    if( $(".work .number h1").text() > 0){
+    if( $(".work .number h1").text() > 1){
       var newMinutes = minutes - 1;
-      if(newMinutes < 10) $("#display h1").text("0" + newMinutes);
-      else $("#display h1").text(newMinutes);
       $(".work .number h1").text(minutes - 1);
+      if(!onGoing){
+        if(newMinutes < 10) $("#display h1").text("0" + newMinutes);
+        else $("#display h1").text(newMinutes);
+      }
+
+
 
     }
   });
@@ -39,20 +49,41 @@ $(document).ready(function(){
 
   $(".break .minus h1").click(function(){
     var minutes = parseInt($(".break .number h1").text());
-    if( $(".break .number h1").text() > 0){
+    if( $(".break .number h1").text() > 1){
       $(".break .number h1").text(minutes - 1);
     }
   });
 
   //----------button------------
   $("#buttons #start").click(function(){
-    var minutes = parseInt($("#display h1").text());
-    setCountDown(minutes,0);
+    if(!onGoing){
+      var minutes = parseInt($("#display h1").text());
+      needBreak = true;
+      setCountDown(minutes,0);
+    }
+
   });
   $("#buttons #pause").click(function(){
     pause();
   });
+
+  $("#buttons #reset").click(function(){
+    console.log("in");
+    onGoing = false;
+    needBreak = true;
+    resume = false;
+    pause_min = undefined;
+    pause_sec = undefined;
+    clearInterval(temp);
+    var minutes = $(".work .number").text();
+    if(minutes < 10) $("#display h1").text("0" + minutes);
+    else $("#display h1").text( minutes);
+
+  });
+
 });
+
+
 
 
 
@@ -78,6 +109,17 @@ var setCountDown = function(minutes,seconds){
           $("#display h1").text(minutes);
         },1000);
         onGoing = false;
+        //Break time count down after the main coundown finish.
+        if(needBreak){
+          needBreak = false;
+          setTimeout(function(){
+            $("#display h1").text(minutes);
+          },1000);
+          var break_min = parseInt($(".break .number").text());
+          setCountDown(break_min, 0);
+        }
+
+
         return;
       }
     },1000);
@@ -93,7 +135,9 @@ var pause = function(){
     pause_sec = parseInt(secReg.exec(time)[0]);
     clearInterval(temp);
     onGoing = false;
-  }else{
+    resume = true;
+  }else if(resume){
+    resume = false;
     setCountDown(pause_min, pause_sec);
   }
 
