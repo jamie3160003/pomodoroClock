@@ -47,7 +47,7 @@ $(document).ready(function(){
   //----------button------------
   $("#buttons #start").click(function(){
     var minutes = parseInt($("#display h1").text());
-    setCountDown(minutes);
+    setCountDown(minutes,0);
   });
   $("#buttons #pause").click(function(){
     pause();
@@ -61,7 +61,7 @@ $(document).ready(function(){
 
 
 //----------------function------------------
-var setCountDown = function(minutes){
+var setCountDown = function(minutes,seconds){
   if(onGoing){
     //do something when pressing pause
   }else{
@@ -70,8 +70,8 @@ var setCountDown = function(minutes){
     var goThrough;
     onGoing = true;
     temp = setInterval(function(){
-      goThrough = counting(begin,minutes);
-      if(goThrough == minutes*60) {
+      goThrough = counting(begin,minutes,seconds);
+      if(goThrough == minutes*60 + seconds) {
         clearInterval(temp);
         $("#display h1").text("Time's Up!");
         setTimeout(function(){
@@ -89,25 +89,27 @@ var pause = function(){
     var time = $("#display h1").text();
     var minReg = /^\d{2}/;
     var secReg = /\d{2}$/
-    pause_min = minReg.exec(time)[0];
-    pause_sec = secReg.exec(time)[0];
-
-
+    pause_min = parseInt(minReg.exec(time)[0]);
+    pause_sec = parseInt(secReg.exec(time)[0]);
+    clearInterval(temp);
+    onGoing = false;
+  }else{
+    setCountDown(pause_min, pause_sec);
   }
-  //do nothing when the timer hasn't been set.
+
 };
 
-var counting = function(begin,minutes){
+var counting = function(begin,minutes,seconds){
   var date = new Date();
   var goThrough = Math.floor(date.getTime()/1000) - begin;
-  showRemainingTime(goThrough,minutes)
+  showRemainingTime(goThrough, minutes, seconds)
   return goThrough;
 };
 
 
 
-var showRemainingTime = function(goThrough, minutes){
-  var remain = minutes*60 - goThrough;
+var showRemainingTime = function(goThrough, minutes, seconds){
+  var remain = (minutes*60 + seconds) - goThrough;
   var min = Math.floor(remain / 60);
   var sec = remain % 60;
   if(min < 10){
