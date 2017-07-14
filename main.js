@@ -11,9 +11,9 @@ $(document).ready(function(){
 //-----work div-----
   $(".work .plus h1").click(function(){
     var minutes = parseInt($(".work .number h1").text());
-    if( $(".work .number h1").text() < 60){
+    if( $(".work #number").text() < 60){
       var newMinutes = minutes + 1;
-      $(".work .number h1").text(minutes + 1);
+      $(".work #number").text(minutes + 1);
       if(!onGoing){
         if(newMinutes < 10) $("#display h1").text("0" + newMinutes);
         else $("#display h1").text(newMinutes);
@@ -25,10 +25,10 @@ $(document).ready(function(){
   });
 
   $(".work .minus h1").click(function(){
-    var minutes = parseInt($(".work .number h1").text());
-    if( $(".work .number h1").text() > 1){
+    var minutes = parseInt($(".work #number").text());
+    if( $(".work #number").text() > 1){
       var newMinutes = minutes - 1;
-      $(".work .number h1").text(minutes - 1);
+      $(".work #number").text(minutes - 1);
       if(!onGoing){
         if(newMinutes < 10) $("#display h1").text("0" + newMinutes);
         else $("#display h1").text(newMinutes);
@@ -41,16 +41,16 @@ $(document).ready(function(){
 
 //-----break div-----
   $(".break .plus h1").click(function(){
-    var minutes = parseInt($(".break .number h1").text());
-    if( $(".break .number h1").text() < 60){
-      $(".break .number h1").text(minutes + 1);
+    var minutes = parseInt($(".break #number").text());
+    if( $(".break #number").text() < 60){
+      $(".break #number").text(minutes + 1);
     }
   });
 
   $(".break .minus h1").click(function(){
-    var minutes = parseInt($(".break .number h1").text());
-    if( $(".break .number h1").text() > 1){
-      $(".break .number h1").text(minutes - 1);
+    var minutes = parseInt($(".break #number").text());
+    if( $(".break #number").text() > 1){
+      $(".break #number").text(minutes - 1);
     }
   });
 
