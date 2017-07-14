@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+#configure {
+  width: 80%;
+  height:100%;
+  background-color: #303F9F;
+
+
+}
+
+#configure .setting{
+  color: #FFFFFF;
+  text-align: center;
+  width: 40%;
+  background-color: black;
+}
+
+
+.work{
+  border: black 2px solid;
+  float: right;
+}
+
+.break{
+  border: black 2px solid;
+
+
+}
+
+#display{
+  width: 80%;
+  background-color:#3F51B5;
+  text-align: center;
+}
+
+#display h1{
+  margin:0;
+  font-size: 300%;
+}
