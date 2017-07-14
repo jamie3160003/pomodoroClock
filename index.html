@@ -8,43 +8,46 @@
     <script type="text/javascript" src="./main.js"></script>
   </head>
   <body>
-    <div class="container">
+    <div class="title">
       <h1>Pomodoro Clock</h1>
     </div>
-    <div id="configure">
+    <div class="container-1"><!---------------------------------->
+      <div id="configure"><!---------------------------------->
 
-      <div class="setting work">
-        <div class="plus">
-          <h1>+</h1>
+        <div class="setting work">
+          <div class="plus">
+            <h1>+</h1>
+          </div>
+          <div class="number">
+            <h1>30</h1>
+          </div>
+          <div class="minus">
+            <h1>-</h1>
+          </div>
         </div>
-        <div class="number">
-          <h1>30</h1>
-        </div>
-        <div class="minus">
-          <h1>-</h1>
-        </div>
-      </div>
 
-      <div class="setting break">
-        <div class="plus">
-          <h1>+</h1>
+        <div class="setting break">
+          <div class="plus">
+            <h1>+</h1>
+          </div>
+          <div class="number">
+            <h1>5</h1>
+          </div>
+          <div class="minus">
+            <h1>-</h1>
+          </div>
         </div>
-        <div class="number">
-          <h1>5</h1>
+      </div><!--- configure------------------------>
+      <div class="container-2">
+          <div id="display">
+            <h1>30</h1>
+            <div id="buttons">
+              <p id="start">Start</p>
+              <p id="pause">Pause/Resume</p>
+              <p id="reset">Reset</p>
+            </div>
+          </div>
         </div>
-        <div class="minus">
-          <h1>-</h1>
-        </div>
-      </div>
-
-      <div id="buttons">
-        <button id="start" type="button" name="button">Start</button>
-        <button id="pause" type="button" name="button">Pause/Resume</button>
-        <button id="reset" type="button" name="button">Reset</button>
-      </div>
-    </div>
-    <div id="display">
-      <h1>30</h1>
-    </div>
+    </div><!---container---------------------->
   </body>
 </html>

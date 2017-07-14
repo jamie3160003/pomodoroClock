@@ -1,41 +1,56 @@
 * {
   box-sizing: border-box;
 }
+body {
+  background-color: #303F9F;
+}
+
+.container-1 {
+  width: 100%;
+  border: black 5px solid;
+  display:flex;
+
+}
 
 #configure {
-  width: 80%;
-  height:100%;
-  background-color: #303F9F;
-
+  flex:1;
 
 }
 
 #configure .setting{
   color: #FFFFFF;
   text-align: center;
-  width: 40%;
-  background-color: black;
+  width: 100%;
+  border: solid yellow 2px;
 }
 
-
-.work{
-  border: black 2px solid;
-  float: right;
+.container-2{
+  border: solid green 3px;
+  flex:2;
+  display: flex;
 }
 
-.break{
-  border: black 2px solid;
-
-
-}
 
 #display{
-  width: 80%;
   background-color:#3F51B5;
   text-align: center;
+  border: purple 2px solid;
+  margin:auto;
 }
 
 #display h1{
-  margin:0;
+  border: red solid 2px;
+  font-size: 500%;
+}
+
+#buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+#buttons p{
+  flex-basis: 20%;
+  margin: 30px;
+  flex:1;
   font-size: 300%;
 }
